@@ -68,7 +68,6 @@ static void noise_suppress_cust_destroy(void *data)
 		circlebuf_free(&ng->output_buffers[i]);
 	}
 
-
 	bfree(ng->rnn_segment_buffers[0]);
 
 	if (ng->rnn_resampler) {
@@ -115,7 +114,6 @@ static inline enum speaker_layout convert_speaker_layout(uint8_t channels)
 		return SPEAKERS_UNKNOWN;
 	}
 }
-
 
 static void noise_suppress_update(void *data)
 {
@@ -360,12 +358,10 @@ noise_suppress_filter_audio(void *data, struct obs_audio_data *audio)
 }
 
 struct obs_source_info noise_suppress_filter_cust {
-	.id             = "noise_suppress_filter_cust",
-	.type           = OBS_SOURCE_TYPE_FILTER,
-	.output_flags   = OBS_SOURCE_AUDIO,
-	.get_name       = noise_suppress_cust_name,
-	.create         = noise_suppress_cust_create,
-	.destroy        = noise_suppress_cust_destroy,
-	.update         = noise_suppress_cust_update,
-	.filter_audio   = noise_suppress_cust_filter_audio,
+	.id = "noise_suppress_filter_cust", .type = OBS_SOURCE_TYPE_FILTER,
+	.output_flags = OBS_SOURCE_AUDIO, .get_name = noise_suppress_cust_name,
+	.create = noise_suppress_cust_create,
+	.destroy = noise_suppress_cust_destroy,
+	.update = noise_suppress_cust_update,
+	.filter_audio = noise_suppress_cust_filter_audio,
 };
