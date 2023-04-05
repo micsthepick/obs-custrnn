@@ -30,6 +30,8 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 #include "rnnoise/include/rnnoise.h"
 #include <media-io/audio-resampler.h>
 
+#define MAX_PREPROC_CHANNELS 8
+
 /* RNNoise constants, these can't be changed */
 #define RNNOISE_SAMPLE_RATE 48000
 #define RNNOISE_FRAME_SIZE 480
@@ -133,8 +135,9 @@ static inline enum speaker_layout convert_speaker_layout(uint8_t channels)
 	}
 }
 
-static void noise_suppress_update(void *data)
+static void noise_suppress_cust_update(void *data, void* settings)
 {
+	UNUSED_PARAMETER(settings);
 	struct noise_suppress_data *ng = data;
 
 	uint32_t sample_rate = audio_output_get_sample_rate(obs_get_audio());
@@ -181,7 +184,7 @@ static void noise_suppress_update(void *data)
 	}
 }
 
-static void *noise_suppress_create(obs_data_t *settings, obs_source_t *filter)
+static void *noise_suppress_cust_create(obs_data_t *settings, obs_source_t *filter)
 {
 	UNUSED_PARAMETER(settings);
 	struct noise_suppress_data *ng =
@@ -189,7 +192,7 @@ static void *noise_suppress_create(obs_data_t *settings, obs_source_t *filter)
 
 	ng->context = filter;
 
-	noise_suppress_update(ng);
+	noise_suppress_cust_update(ng, settings);
 	return ng;
 }
 
@@ -302,7 +305,7 @@ static void reset_data(struct noise_suppress_data *ng)
 }
 
 static struct obs_audio_data *
-noise_suppress_filter_audio(void *data, struct obs_audio_data *audio)
+noise_suppress_cust_filter_audio(void *data, struct obs_audio_data *audio)
 {
 	struct noise_suppress_data *ng = data;
 	struct ng_audio_info info;
@@ -375,7 +378,7 @@ noise_suppress_filter_audio(void *data, struct obs_audio_data *audio)
 	return &ng->output_audio;
 }
 
-struct obs_source_info noise_suppress_filter_cust {
+struct obs_source_info noise_suppress_filter_cust = {
 	.id = "noise_suppress_filter_cust", .type = OBS_SOURCE_TYPE_FILTER,
 	.output_flags = OBS_SOURCE_AUDIO, .get_name = noise_suppress_cust_name,
 	.create = noise_suppress_cust_create,

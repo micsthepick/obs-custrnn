@@ -4,7 +4,8 @@
 #include "config.h"
 #endif
 
-#include "rnnoise/rnn.h"
+#include "rnn_data.h"
+#include "rnn.h"
 
 static const rnn_weight input_dense_weights[1008] = {
    28, -17, 12, -52, 4, -15, -11, 44,
@@ -11092,3 +11093,17 @@ const DenseLayer vad_output = {
    24, 1, ACTIVATION_SIGMOID
 };
 
+const struct RNNModel rnnoise_model_orig = {
+    24,
+    &input_dense,
+    24.0,
+    &vad_gru,
+    48.0,
+    &noise_gru,
+    96.0,
+    &denoise_gru,
+    22,
+    &denoise_output,
+    1,
+    &vad_output,
+};
