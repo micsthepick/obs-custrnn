@@ -1,6 +1,6 @@
 /*
-Plugin Name
-Copyright (C) <Year> <Developer> <Email Address>
+OBS CustRNN
+Copyright (C) 2023 micsthepick micksthepick.bots@gmail.com
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,9 +22,16 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 
 OBS_DECLARE_MODULE()
 OBS_MODULE_USE_DEFAULT_LOCALE(PLUGIN_NAME, "en-US")
+MODULE_EXPORT const char *obs_module_description(void)
+{
+	return "custom RNNoise Model";
+}
+
+extern struct obs_source_info noise_suppress_filter_cust;
 
 bool obs_module_load(void)
 {
+	obs_register_source(&noise_suppress_filter_cust);
 	blog(LOG_INFO, "plugin loaded successfully (version %s)",
 	     PLUGIN_VERSION);
 	return true;
