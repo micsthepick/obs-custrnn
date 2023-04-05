@@ -135,7 +135,7 @@ static inline enum speaker_layout convert_speaker_layout(uint8_t channels)
 	}
 }
 
-static void noise_suppress_cust_update(void *data, void* settings)
+static void noise_suppress_cust_update(void *data, obs_data_t *settings)
 {
 	UNUSED_PARAMETER(settings);
 	struct noise_suppress_data *ng = data;
@@ -184,7 +184,8 @@ static void noise_suppress_cust_update(void *data, void* settings)
 	}
 }
 
-static void *noise_suppress_cust_create(obs_data_t *settings, obs_source_t *filter)
+static void *noise_suppress_cust_create(obs_data_t *settings,
+					obs_source_t *filter)
 {
 	UNUSED_PARAMETER(settings);
 	struct noise_suppress_data *ng =
@@ -379,8 +380,10 @@ noise_suppress_cust_filter_audio(void *data, struct obs_audio_data *audio)
 }
 
 struct obs_source_info noise_suppress_filter_cust = {
-	.id = "noise_suppress_filter_cust", .type = OBS_SOURCE_TYPE_FILTER,
-	.output_flags = OBS_SOURCE_AUDIO, .get_name = noise_suppress_cust_name,
+	.id = "noise_suppress_filter_cust",
+	.type = OBS_SOURCE_TYPE_FILTER,
+	.output_flags = OBS_SOURCE_AUDIO,
+	.get_name = noise_suppress_cust_name,
 	.create = noise_suppress_cust_create,
 	.destroy = noise_suppress_cust_destroy,
 	.update = noise_suppress_cust_update,
