@@ -81,7 +81,7 @@ elseif(OS_MACOS)
   set(MACOSX_PLUGIN_BUNDLE_VERSION "${CMAKE_PROJECT_VERSION}")
   set(MACOSX_PLUGIN_SHORT_VERSION_STRING "1")
 
-  target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE -Wall)
+  target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE -Wall -Wno-null-dereference)
   # --- End of section ---
 
   # --- Linux-specific build settings and tasks ---
