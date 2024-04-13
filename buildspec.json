@@ -1,84 +1,39 @@
 {
     "dependencies": {
         "obs-studio": {
-            "version": "29.0.2",
-            "repository": "https://github.com/obsproject/obs-studio.git",
-            "branch": "master",
-            "hash": "0fb8bb4b1e18ee1c870c48d35ab5b598af3b59e9"
-        },
-        "prebuilt": {
-            "version": "2023-04-03",
-            "baseUrl": "https://github.com/obsproject/obs-deps/releases/download",
-            "label": "Pre-built obs-deps",
+            "version": "30.1.2",
+            "baseUrl": "https://github.com/obsproject/obs-studio/archive/refs/tags",
+            "label": "OBS sources",
             "hashes": {
-                "macos-x86_64": "2dfa6f7d14e576ab62abbaba60725f328e4fdcb30a07f1ac0a9d65f00825822d",
-                "macos-arm64": "761904548b31f1a06b6a2afb745fde71655d5d86802dc3b64917151c95c30f16",
-                "macos-universal": "0939339b45ad426d5649e7db945f1c479fde075418efc7789489758e7ecbc115",
-                "windows-x64": "01b863b76b8ec55d870986d0649fe5b16eff1303179b4b2465e2eb031f3e4abf",
-                "windows-x86": "0a6c5279e1e622392fe3f3f5552f30007fc8d14b4129bf7715ebf83622163186"
+                "macos": "490bae1c392b3b344b0270afd8cb887da4bc50bd92c0c426e96713c1ccb9701a",
+                "windows-x64": "c2dd03fa7fd01fad5beafce8f7156da11f9ed9a588373fd40b44a06f4c03b867"
             }
         },
-        "qt5": {
-            "version": "2023-04-03",
+        "prebuilt": {
+            "version": "2024-03-19",
             "baseUrl": "https://github.com/obsproject/obs-deps/releases/download",
-            "label": "Pre-built Qt5",
+            "label": "Pre-Built obs-deps",
             "hashes": {
-                "macos-x86_64": "bff3e78bb95b334d2ee903a9ce39b1b12c9a90c618555035ac4ea6e3d6120493",
-                "macos-arm64": "38bc17f2be808a57c7ce0f2b93bd220d04084268345504af6a538def4990d6e2",
-                "macos-universal": "2d7a909bbbc3201598000ddbb5642591193cb964d19f69e367493305ec3afab6",
-                "windows-x64": "1ed6fb1faac5c48528bd394c5b3da8e4aa8cff83fbb42ec8c0c94ae9797e7397",
-                "windows-x86": "fd2f9d12d28eb1cf8a18fb07a25cf401042feb4df6cfa34ef7737a9660efd3f6"
-            },
-            "pdb-hashes": {
-                "windows-x64": "caac548950963231959030706caee42fbfae4f7994eb05281845e2c2f2a00a88",
-                "windows-x86": "d52fba5d840b85fc197b1c29f69a93c552fd651c6888b12394290db4c71d6ea1"
+                "macos": "2e9bfb55a5e0e4c1086fa1fda4cf268debfead473089df2aaea80e1c7a3ca7ff",
+                "windows-x64": "6e86068371526a967e805f6f9903f9407adb683c21820db5f07da8f30d11e998"
             }
         },
         "qt6": {
-            "version": "2023-04-03",
+            "version": "2024-03-19",
             "baseUrl": "https://github.com/obsproject/obs-deps/releases/download",
-            "label": "Pre-built Qt6",
+            "label": "Pre-Built Qt6",
             "hashes": {
-                "macos-x86_64": "63939fd19e94ff04994ce42df1f39e183e327bb3860549c9372ddd1a1750787e",
-                "macos-arm64": "bff3e78bb95b334d2ee903a9ce39b1b12c9a90c618555035ac4ea6e3d6120493",
-                "macos-universal": "d80227bd217b33cbe1b6629f9bcebc402f765667ace3c00e367ef0f36785fd0c",
-                "windows-x64": "433aa1421206523ad0cc277a304e664deef8c6520a813e0be4b58155785869f2",
-                "windows-x86": "278b4e632cfdedbf65c7bbfbfc144af5ab5f589619995d5ba14efb66da4bce55"
+                "macos": "694f1e639c017e3b1f456f735330dc5afae287cbea85757101af1368de3142c8",
+                "windows-x64": "72d1df34a0ef7413a681d5fcc88cae81da60adc03dcd23ef17862ab170bcc0dd"
             },
-            "pdb-hashes": {
-                "windows-x64": "351921edc2b8a18ea80b7568c008329534d017fe5b6da9567eb09f75048a3b78",
-                "windows-x86": "454fb0f9308447651a96c91307f363f1b554734b3d3ce517e78094fbc770d6a2"
+            "debugSymbols": {
+                "windows-x64": "fbddd1f659c360f2291911ac5709b67b6f8182e6bca519d24712e4f6fd3cc865"
             }
         }
     },
     "platformConfig": {
-        "macos-x86_64": {
-            "qtVersion": 6,
-            "deploymentTarget": "10.15"
-        },
-        "macos-arm64": {
-            "qtVersion": 6,
-            "deploymentTarget": "11.0"
-        },
-        "macos-universal": {
-            "qtVersion": 6,
-            "deploymentTarget": "10.15"
-        },
-        "windows-x64": {
-            "qtVersion": 6,
-            "visualStudio": "Visual Studio 17 2022",
-            "platformSDK": "10.0.20348.0"
-        },
-        "windows-x86": {
-            "qtVersion": 6,
-            "visualStudio": "Visual Studio 17 2022",
-            "platformSDK": "10.0.20348.0"
-        },
-        "linux-x86_64": {
-            "qtVersion": 6
-        },
-        "linux-aarch64": {
-            "qtVersion": 6
+        "macos": {
+            "bundleId": "com.example.obs-plugintemplate"
         }
     },
     "name": "obs-custrnn",
