@@ -1,6 +1,6 @@
 /*
 OBS CustRNN
-Copyright (C) 2023 micsthepick micksthepick.bots@gmail.com
+Copyright (C) 2024 Michael Pannekoek pannekoekmike@gmail.com
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 */
 
 #include <obs-module.h>
+#include <plugin-support.h>
 
 #include "plugin-macros.generated.h"
 
@@ -32,12 +33,12 @@ extern struct obs_source_info noise_suppress_filter_cust;
 bool obs_module_load(void)
 {
 	obs_register_source(&noise_suppress_filter_cust);
-	blog(LOG_INFO, "plugin loaded successfully (version %s)",
-	     PLUGIN_VERSION);
+	obs_log(LOG_INFO, "plugin loaded successfully (version %s)",
+		PLUGIN_VERSION);
 	return true;
 }
 
 void obs_module_unload()
 {
-	blog(LOG_INFO, "plugin unloaded");
+	obs_log(LOG_INFO, "plugin unloaded");
 }

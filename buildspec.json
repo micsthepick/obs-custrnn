@@ -39,5 +39,9 @@
     "name": "obs-custrnn",
     "version": "1.0.0",
     "author": "micsthepick",
+    "website": "https://github.io/micsthepick",
     "email": "micksthepick.bots@gmail.com"
+    "uuids": {
+        "windowsApp": "00000000-0000-0000-0000-000000000000"
+    }
 }
