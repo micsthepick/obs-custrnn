@@ -1,5 +1,5 @@
 /*
-OBS CustRNN
+Plugin Name
 Copyright (C) 2024 Michael Pannekoek pannekoekmike@gmail.com
 
 This program is free software; you can redistribute it and/or modify
@@ -16,27 +16,23 @@ You should have received a copy of the GNU General Public License along
 with this program. If not, see <https://www.gnu.org/licenses/>
 */
 
-#include <obs-module.h>
-#include <plugin-support.h>
+#pragma once
 
-OBS_DECLARE_MODULE()
-OBS_MODULE_USE_DEFAULT_LOCALE(PLUGIN_NAME, "en-US")
-MODULE_EXPORT const char *obs_module_description(void)
-{
-	return "custom RNNoise Model";
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <string.h>
+
+extern const char *PLUGIN_NAME;
+extern const char *PLUGIN_VERSION;
+
+void obs_log(int log_level, const char *format, ...);
+extern void blogva(int log_level, const char *format, va_list args);
+
+#ifdef __cplusplus
 }
-
-extern struct obs_source_info noise_suppress_filter_cust;
-
-bool obs_module_load(void)
-{
-	obs_register_source(&noise_suppress_filter_cust);
-	obs_log(LOG_INFO, "plugin loaded successfully (version %s)",
-		PLUGIN_VERSION);
-	return true;
-}
-
-void obs_module_unload(void)
-{
-	obs_log(LOG_INFO, "plugin unloaded");
-}
+#endif
