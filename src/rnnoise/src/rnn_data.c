@@ -611,7 +611,7 @@ const GRULayer vad_gru = {
    vad_gru_bias,
    vad_gru_weights,
    vad_gru_recurrent_weights,
-   24, 24.0, ACTIVATION_TANH
+   24, 24, ACTIVATION_TANH
 };
 
 static const rnn_weight noise_gru_weights[12960] = {
@@ -3147,7 +3147,7 @@ const GRULayer noise_gru = {
    noise_gru_bias,
    noise_gru_weights,
    noise_gru_recurrent_weights,
-   90, 48.0, ACTIVATION_RELU
+   90, 48, ACTIVATION_RELU
 };
 
 static const rnn_weight denoise_gru_weights[32832] = {
@@ -10795,7 +10795,7 @@ const GRULayer denoise_gru = {
    denoise_gru_bias,
    denoise_gru_weights,
    denoise_gru_recurrent_weights,
-   114, 96.0, ACTIVATION_TANH
+   114, 96, ACTIVATION_TANH
 };
 
 static const rnn_weight denoise_output_weights[2112] = {
@@ -11096,11 +11096,11 @@ const DenseLayer vad_output = {
 const struct RNNModel rnnoise_model_orig = {
     24,
     &input_dense,
-    24.0,
+    24,
     &vad_gru,
-    48.0,
+    48,
     &noise_gru,
-    96.0,
+    96,
     &denoise_gru,
     22,
     &denoise_output,
