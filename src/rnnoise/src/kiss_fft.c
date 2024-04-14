@@ -598,4 +598,3 @@ void opus_ifft_c(const kiss_fft_state *st, const kiss_fft_cpx *fin,
 		fout[i].i = -fout[i].i;
 }
 #endif
-
