@@ -108,12 +108,12 @@ void compute_band_energy(float *bandE, const kiss_fft_cpx *X) {
     int band_size;
     band_size = (eband5ms[i+1]-eband5ms[i])<<FRAME_SIZE_SHIFT;
     for (j=0;j<band_size;j++) {
-      float tmp;
+      float temp;
       float frac = (float)j/band_size;
-      tmp = SQUARE(X[(eband5ms[i]<<FRAME_SIZE_SHIFT) + j].r);
-      tmp += SQUARE(X[(eband5ms[i]<<FRAME_SIZE_SHIFT) + j].i);
-      sum[i] += (1-frac)*tmp;
-      sum[i+1] += frac*tmp;
+      temp = SQUARE(X[(eband5ms[i]<<FRAME_SIZE_SHIFT) + j].r);
+      temp += SQUARE(X[(eband5ms[i]<<FRAME_SIZE_SHIFT) + j].i);
+      sum[i] += (1-frac)*temp;
+      sum[i+1] += frac*temp;
     }
   }
   sum[0] *= 2;
@@ -133,12 +133,12 @@ void compute_band_corr(float *bandE, const kiss_fft_cpx *X, const kiss_fft_cpx *
     int band_size;
     band_size = (eband5ms[i+1]-eband5ms[i])<<FRAME_SIZE_SHIFT;
     for (j=0;j<band_size;j++) {
-      float tmp;
+      float temp;
       float frac = (float)j/band_size;
-      tmp = X[(eband5ms[i]<<FRAME_SIZE_SHIFT) + j].r * P[(eband5ms[i]<<FRAME_SIZE_SHIFT) + j].r;
-      tmp += X[(eband5ms[i]<<FRAME_SIZE_SHIFT) + j].i * P[(eband5ms[i]<<FRAME_SIZE_SHIFT) + j].i;
-      sum[i] += (1-frac)*tmp;
-      sum[i+1] += frac*tmp;
+      temp = X[(eband5ms[i]<<FRAME_SIZE_SHIFT) + j].r * P[(eband5ms[i]<<FRAME_SIZE_SHIFT) + j].r;
+      temp += X[(eband5ms[i]<<FRAME_SIZE_SHIFT) + j].i * P[(eband5ms[i]<<FRAME_SIZE_SHIFT) + j].i;
+      sum[i] += (1-frac)*temp;
+      sum[i+1] += frac*temp;
     }
   }
   sum[0] *= 2;
@@ -383,9 +383,9 @@ static int compute_frame_features(DenoiseState *st, kiss_fft_cpx *X, kiss_fft_cp
       float dist=0;
       for (k=0;k<NB_BANDS;k++)
       {
-        float tmp;
-        tmp = st->cepstral_mem[i][k] - st->cepstral_mem[j][k];
-        dist += tmp*tmp;
+        float temp;
+        temp = st->cepstral_mem[i][k] - st->cepstral_mem[j][k];
+        dist += temp*temp;
       }
       if (j!=i)
         mindist = MIN32(mindist, dist);
