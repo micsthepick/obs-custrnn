@@ -275,14 +275,14 @@ static inline void process(struct noise_suppress_data *ng)
 	/* Pop from input deque */
 	for (size_t i = 0; i < ng->channels; i++)
 		deque_pop_front(&ng->input_buffers[i], ng->copy_buffers[i],
-				    ng->frames * sizeof(float));
+				ng->frames * sizeof(float));
 
 	process_rnnoise(ng);
 
 	/* Push to output deque */
 	for (size_t i = 0; i < ng->channels; i++)
 		deque_push_back(&ng->output_buffers[i], ng->copy_buffers[i],
-				    ng->frames * sizeof(float));
+				ng->frames * sizeof(float));
 }
 
 struct ng_audio_info {
@@ -343,7 +343,7 @@ noise_suppress_cust_filter_audio(void *data, struct obs_audio_data *audio)
 	 * push back current audio data to input deque */
 	for (size_t i = 0; i < ng->channels; i++)
 		deque_push_back(&ng->input_buffers[i], audio->data[i],
-				    audio->frames * sizeof(float));
+				audio->frames * sizeof(float));
 
 	/* -----------------------------------------------
 	 * pop/process each 10ms segments, push back to output deque */
@@ -371,7 +371,7 @@ noise_suppress_cust_filter_audio(void *data, struct obs_audio_data *audio)
 			(uint8_t *)&ng->output_data.array[i * out_size];
 
 		deque_pop_front(&ng->output_buffers[i],
-				    ng->output_audio.data[i], out_size);
+				ng->output_audio.data[i], out_size);
 	}
 
 	ng->output_audio.frames = info.frames;
