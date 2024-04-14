@@ -31,17 +31,17 @@
 #include <stdio.h>
 
 #ifndef RNNOISE_EXPORT
-# if defined(WIN32)
-#  if defined(RNNOISE_BUILD) && defined(DLL_EXPORT)
-#   define RNNOISE_EXPORT __declspec(dllexport)
-#  else
-#   define RNNOISE_EXPORT
-#  endif
-# elif defined(__GNUC__) && defined(RNNOISE_BUILD)
-#  define RNNOISE_EXPORT __attribute__ ((visibility ("default")))
-# else
-#  define RNNOISE_EXPORT
-# endif
+#if defined(WIN32)
+#if defined(RNNOISE_BUILD) && defined(DLL_EXPORT)
+#define RNNOISE_EXPORT __declspec(dllexport)
+#else
+#define RNNOISE_EXPORT
+#endif
+#elif defined(__GNUC__) && defined(RNNOISE_BUILD)
+#define RNNOISE_EXPORT __attribute__((visibility("default")))
+#else
+#define RNNOISE_EXPORT
+#endif
 #endif
 
 #ifdef __cplusplus
@@ -59,7 +59,8 @@ RNNOISE_EXPORT DenoiseState *rnnoise_create(RNNModel *model);
 
 RNNOISE_EXPORT void rnnoise_destroy(DenoiseState *st);
 
-RNNOISE_EXPORT float rnnoise_process_frame(DenoiseState *st, float *out, const float *in);
+RNNOISE_EXPORT float rnnoise_process_frame(DenoiseState *st, float *out,
+					   const float *in);
 
 RNNOISE_EXPORT RNNModel *rnnoise_model_from_file(FILE *f);
 
